@@ -1,0 +1,106 @@
+:root {
+    --primary-color: gainsboro;
+}
+button {
+    border: 1px solid var(--primary-color);
+    background-color: white;
+}
+button:hover {
+    cursor: pointer;
+    background-color: var(--primary-color);
+}
+select {
+    border: 1px solid var(--primary-color);
+}
+.App {
+    position: relative;
+}
+
+.searchForm {
+    &-banner {
+        text-align: center;
+        margin: 8px;
+    }
+    &-column {
+        margin: 12px;
+        text-align: center;
+    }
+    &-date {
+        margin: 12px;
+        text-align: center;
+        &-checkBoxContainer {
+            &:hover {
+                cursor: pointer;
+            }
+            margin-top: 4px;
+            margin-bottom: 4px;
+        }
+        &-dataInputContainer {
+            margin-top: 4px;
+            margin-bottom: 4px;
+            & {
+            }
+        }
+    }
+    &-btns {
+        text-align: center;
+        &-submit {
+            margin: 8px;
+            padding: 8px;
+        }
+        &-clear {
+            padding: 8px;
+
+            margin: 8px;
+        }
+    }
+}
+.dividingLine {
+    margin: 10px auto;
+    text-align: center;
+    width: 90vw;
+    height: 1px;
+    background-color: var(--primary-color);
+}
+.tableContainer {
+    margin: 10px auto;
+    width: 90vw;
+    text-align: center;
+    .noData {
+        margin: 32px;
+    }
+    .data-row:hover {
+        background-color: var(--primary-color);
+    }
+    .row {
+        margin-top: 4px;
+        margin-bottom: 4px;
+        &-sortBtn {
+            padding: 4px;
+            .sortSign {
+                display: inline-block;
+                margin: 0 4px;
+                &.isNone {
+                    margin: 0;
+                }
+                &.isAsc {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+        &-col {
+            width: 25%;
+            display: inline-block;
+        }
+    }
+}
+.pagination {
+    margin-top: 16px;
+    &-btn {
+        display: inline-flex;
+        width: 32px;
+        height: 32px;
+        justify-content: center;
+        align-items: center;
+    }
+}
