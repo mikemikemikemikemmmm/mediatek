@@ -33,17 +33,17 @@ export const Pagination = (props: {
         )
     }
     return <section className="pagination">
-        <button className="pagination-btn" onClick={() => handleClickPageNum(1)}>
+        <button data-testid='pagination-btn' className="pagination-btn" onClick={() => handleClickPageNum(1)}>
             &lt;&lt;
         </button>
-        <button className="pagination-btn" onClick={() => handleClickPageNum(currentPageNum === 1 ? 1 : currentPageNum - 1)}>
+        <button data-testid='pagination-btn' className="pagination-btn" onClick={() => handleClickPageNum(currentPageNum === 1 ? 1 : currentPageNum - 1)}>
             &lt;
         </button>
         {renderBtns()}
-        <button className="pagination-btn" onClick={() => handleClickPageNum(currentPageNum === maxPageNum ? maxPageNum : currentPageNum + 1)}>
+        <button data-testid='pagination-btn' className="pagination-btn" onClick={() => handleClickPageNum(currentPageNum === maxPageNum ? maxPageNum : currentPageNum + 1)}>
             &gt;
         </button>
-        <button className="pagination-btn" onClick={() => handleClickPageNum(maxPageNum)}>
+        <button data-testid='pagination-btn' className="pagination-btn" onClick={() => handleClickPageNum(maxPageNum)}>
             &gt;&gt;
         </button>
     </section>

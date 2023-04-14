@@ -11,7 +11,8 @@ import { Pagination } from './components/Pagination';
 import { ROW_NUM_PAGE } from './const';
 import { SearchForm } from './components/SearchForm';
 import { Loading } from './components/Loading';
-function App() {
+import { sortByColumn, sortByDate, transResToData } from './utils';
+export function App() {
   const { loading, error, data } = useQuery<QueryResponse>(createQuery());
   const [originData, setOriginData] = useState<RowData[]>([])
   const [filteredData, setFilteredData] = useState<RowData[]>([])
@@ -110,58 +111,30 @@ function App() {
     setFilteredDataBySort(copyedData)
   }
   const setFilteredDataBySort = (copyedData: RowData[]) => {
-    const copy = copyedData
     const isAllNoSort = Object.values(sortStatus).every(item => item === 'none')
     if (isAllNoSort) {
-      copy.sort((prev, next) => prev.id - next.id)
-      setFilteredData(copy)
+      copyedData.sort((prev, next) => prev.id - next.id)
+      setFilteredData(copyedData)
       return
     }
     const isSortByDate = sortStatus.launch_date_local !== 'none'
     if (isSortByDate) {
-      if (sortStatus.launch_date_local === 'asc') {
-        copy.sort((prev, next) => {
-          return prev.launch_date_local - next.launch_date_local
-        })
-      } else {
-        copy.sort((prev, next) => {
-          return next.launch_date_local - prev.launch_date_local
-        })
-      }
-      setFilteredData(copy)
+      const dateSorted = sortByDate(copyedData, sortStatus.launch_date_local)
+      setFilteredData(dateSorted)
       return
     }
     const target = Object.entries(sortStatus).find(item => item[1] !== 'none')
     if (!target) {
-      //TODO
       return
     }
     const column = target[0] as RowDataKey
     const orderType = target[1]
-    copy.sort((prev, next) => {
-      const prevVal = prev[column] as string
-      const nextVal = next[column] as string
-      if (orderType === 'asc') {
-        return prevVal.localeCompare(nextVal)
-      } else {
-        return nextVal.localeCompare(prevVal)
-      }
-    })
-    setFilteredData(copy)
+    const columnSorted = sortByColumn(copyedData, column, orderType)
+    setFilteredData(columnSorted)
   }
   useEffect(() => {
     if (!error && data && Array.isArray(data?.launches)) {
-      let counter = 0
-      const _data = data.launches.map(item => {
-        counter += 1
-        return {
-          id: counter,
-          mission_name: item.mission_name,
-          rocket_name: item.rocket.rocket_name,
-          rocket_type: item.rocket.rocket_type,
-          launch_date_local: Date.parse(item.launch_date_local)
-        }
-      }) as RowData[]
+      const _data = transResToData(data)
       setFilteredData(_data)
       setOriginData(_data)
     }
@@ -181,25 +154,25 @@ function App() {
       <section className='tableContainer'>
         <div className="row">
           <span className='row-sortBtnContainer row-col'>
-            <button className='row-sortBtn' onClick={() => handleClickSort('mission_name')}>
+            <button className='row-sortBtn' data-testid='row-sortBtn' onClick={() => handleClickSort('mission_name')}>
               <span>Mission Name</span>
               <SortSign value={sortStatus['mission_name']} />
             </button>
           </span>
           <span className='row-sortBtnContainer row-col'>
-            <button className='row-sortBtn' onClick={() => handleClickSort('rocket_name')}>
+            <button className='row-sortBtn' data-testid='row-sortBtn' onClick={() => handleClickSort('rocket_name')}>
               <span> Rocket Name</span>
               <SortSign value={sortStatus['rocket_name']} />
             </button>
           </span>
           <span className='row-sortBtnContainer row-col'>
-            <button className='row-sortBtn' onClick={() => handleClickSort('rocket_type')}>
+            <button className='row-sortBtn' data-testid='row-sortBtn' onClick={() => handleClickSort('rocket_type')}>
               <span>Rocket Type</span>
               <SortSign value={sortStatus['rocket_type']} />
             </button>
           </span>
           <span className='row-sortBtnContainer row-col'>
-            <button className='row-sortBtn' onClick={() => handleClickSort('launch_date_local')}>
+            <button className='row-sortBtn' data-testid='row-sortBtn' onClick={() => handleClickSort('launch_date_local')}>
               Launch Date
               <SortSign value={sortStatus['launch_date_local']} />
             </button>

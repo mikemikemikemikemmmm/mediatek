@@ -6,20 +6,27 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:c": "vitest run --coverage"
   },
   "dependencies": {
     "@apollo/client": "^3.7.11",
     "graphql": "^16.6.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "sass": "^1.62.0"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^3.1.0",
+    "@vitest/coverage-c8": "^0.30.1",
+    "jsdom": "^21.1.1",
+    "sass": "^1.62.0",
     "typescript": "^4.9.3",
-    "vite": "^4.2.0"
+    "vite": "^4.2.0",
+    "vitest": "^0.30.1"
   }
 }

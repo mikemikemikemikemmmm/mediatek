@@ -37,10 +37,10 @@ export const SearchForm = (props: { handleSubmitSearch: (data: SearchInputs) => 
     }
     return (
 
-        <form className='searchForm'>
+        <form data-testid='searchForm' className='searchForm'>
             <h1 className="searchForm-banner">Search</h1>
             <div className="searchForm-column">
-                <select className="searchForm-column-selectInput" value={searchInputs.column} onChange={e => handleChangeSearchSelection(e)}>
+                <select data-testid='searchForm-column-selectInput' className="searchForm-column-selectInput" value={searchInputs.column} onChange={e => handleChangeSearchSelection(e)}>
                     <option value="mission_name">
                         mission name
                     </option>
@@ -51,27 +51,27 @@ export const SearchForm = (props: { handleSubmitSearch: (data: SearchInputs) => 
                         rocket type
                     </option>
                 </select>
-                <input placeholder="search by column" className="searchForm-column-textInput" type="text" value={searchInputs.value} onChange={e => handleChangeSearchText(e)} />
+                <input data-testid='searchForm-column-textInput' placeholder="search by column" className="searchForm-column-textInput" type="text" value={searchInputs.value} onChange={e => handleChangeSearchText(e)} />
             </div>
             <div className="searchForm-date">
                 <label htmlFor="searchForm-date-checkBoxInput" className="searchForm-date-checkBoxContainer">
-                    <input className="searchForm-date-checkBoxInput" id="searchForm-date-checkBoxInput" type="checkbox" checked={searchInputs.isSearchByDate} onChange={() => handleChangeIsSearchByDate()} />
+                    <input className="searchForm-date-checkBoxInput" data-testid='searchForm-date-checkBoxInput' id="searchForm-date-checkBoxInput" type="checkbox" checked={searchInputs.isSearchByDate} onChange={() => handleChangeIsSearchByDate()} />
                     <span>search by date?</span>
                 </label>
                 <div className="searchForm-date-dataInputContainer">
                     <span>start date</span>
-                    <input className="searchForm-date-input" type="date" disabled={!searchInputs.isSearchByDate} value={searchInputs.start} onChange={e => handleChangeSearchDate(e, 'start')} />
+                    <input className="searchForm-date-input" data-testid='searchForm-date-start' type="date" disabled={!searchInputs.isSearchByDate} value={searchInputs.start} onChange={e => handleChangeSearchDate(e, 'start')} />
                 </div>
                 <div className="searchForm-date-dataInputContainer">
                     <span>end date</span>
-                    <input className="searchForm-date-input" type="date" disabled={!searchInputs.isSearchByDate} value={searchInputs.end} onChange={e => handleChangeSearchDate(e, 'end')} />
+                    <input className="searchForm-date-input" data-testid='searchForm-date-end' type="date" disabled={!searchInputs.isSearchByDate} value={searchInputs.end} onChange={e => handleChangeSearchDate(e, 'end')} />
                 </div>
             </div>
             <div className="searchForm-btns" >
-                <button className="searchForm-btns-submit" onClick={(e) => handleClickSubmit(e)}>
+                <button data-testid='searchForm-btns-submit' className="searchForm-btns-submit" onClick={(e) => handleClickSubmit(e)}>
                     Submit
                 </button>
-                <button className="searchForm-btns-clear" onClick={(e) => handleClickClear(e)}>
+                <button data-testid='searchForm-btns-clear' className="searchForm-btns-clear" onClick={(e) => handleClickClear(e)}>
                     Clear Search
                 </button>
             </div>
