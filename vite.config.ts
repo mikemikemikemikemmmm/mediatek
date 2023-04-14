@@ -11,6 +11,7 @@ export default defineConfig(({ command }) => {
     }
   } else {
     return {
+      base: "/mediatek/",
       plugins: [react({
         babel: {
           plugins: [
