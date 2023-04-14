@@ -1,4 +1,4 @@
-import { cleanup, render, screen, fireEvent, waitFor, prettyDOM } from "@testing-library/react";
+import { cleanup, render, fireEvent, waitFor } from "@testing-library/react";
 import { describe, expect, it, beforeEach, vi } from "vitest";
 import { PageBtn } from "../../components/PageBtn";
 describe('pageBtn', () => {

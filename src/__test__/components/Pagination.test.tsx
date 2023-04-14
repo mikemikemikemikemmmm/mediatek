@@ -1,6 +1,5 @@
 import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, beforeEach, vi } from "vitest";
-import { PageBtn } from "../../components/PageBtn";
 import { Pagination } from "../../components/Pagination";
 import { MAX_PAGE_BTN_NUM_SHOW } from "../../const";
 describe('test pagination', () => {

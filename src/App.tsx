@@ -133,6 +133,11 @@ export function App() {
     setFilteredData(columnSorted)
   }
   useEffect(() => {
+    if (error) {
+      alert("Something went wrong, please refresh page.")
+    }
+  }, [error])
+  useEffect(() => {
     if (!error && data && Array.isArray(data?.launches)) {
       const _data = transResToData(data)
       setFilteredData(_data)

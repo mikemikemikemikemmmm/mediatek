@@ -1,4 +1,4 @@
-import { act, cleanup, findByTestId, fireEvent, prettyDOM, render, screen, waitFor } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, beforeEach } from "vitest";
 import { App } from "../App";
 import { MockedProvider } from "@apollo/client/testing";
@@ -6,7 +6,7 @@ import { createQuery } from "../api/methods";
 import { createFakeResponse } from "./fakeData";
 import { QueryResponse } from "../type";
 import { MAX_PAGE_BTN_NUM_SHOW, ROW_NUM_PAGE } from "../const";
-import { sortByColumn, sortByDate, transResToData } from "../utils";
+import { sortByColumn, transResToData } from "../utils";
 const createMock = (dataLength: number) => {
     const responseMock = {
         request: {
